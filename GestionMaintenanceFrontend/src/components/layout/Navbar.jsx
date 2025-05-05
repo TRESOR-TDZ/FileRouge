@@ -24,19 +24,19 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 
     // Fonction pour rendre le bouton de bascule du thème (clair/sombre)
     const renderThemeToggleButton = () => (
-        <Button variant="ghost" size="icon" onClick={toggleTheme}>
+        <Button variant="ghost" size="icon" className = 'border  border-gray-500' onClick={toggleTheme}>
           {/* Affichage de l'icône Soleil si le thème sombre est actif, sinon l'icône Lune */}
           {isDarkMode ? (
             <Sun className="h-6 w-6 text-gray-300" />
           ) : (
-            <Moon className="h-6 w-6 text-gray-300" />
+            <Moon className="h-6 w-6 text-gray-300 " />
           )}
         </Button>
     );
 
     // Fonction pour rendre le bouton des notifications
     const renderNotificationButton = () => (
-      <Button variant="ghost" size="icon" className="relative">
+      <Button variant="ghost" size="icon" className="relative border  border-gray-500">
         {/* Icône de la cloche pour les notifications */}
         <Bell className={cn("h-6 w-6", isDarkMode ? "text-gray-300" : "text-gray-700")} />
 
@@ -47,7 +47,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 
     // Fonction pour rendre le bouton de l'utilisateur
     const renderUserButton = () => (
-      <Button variant="ghost" size="icon">
+      <Button variant="ghost" size="icon" className='border  border-gray-500'>
         {/* Icône de l'utilisateur */}
         <User className={cn("h-6 w-6", isDarkMode ? "text-gray-300" : "text-gray-700")} />
       </Button>
@@ -55,7 +55,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
 
     // Fonction pour rendre le bouton des paramètres
     const renderSettingsButton = () => (
-      <Button variant="ghost" size="icon">
+      <Button variant="ghost" size="icon" className='border  border-gray-500'>
         {/* Icône des paramètres */}
         <Settings className={cn("h-6 w-6", isDarkMode ? "text-gray-300" : "text-gray-700")} />
       </Button>
@@ -70,7 +70,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
     );
 
     return (
-      <nav className={cn("backdrop-blur-md border-b p-4 flex items-center justify-between",
+      <nav className={cn("backdrop-blur-md border-b-2 p-4 flex items-center justify-between",
             isDarkMode
                 ? "bg-gray-900 border-gray-800"
                 : "bg-white/10 border-white/10" )}>

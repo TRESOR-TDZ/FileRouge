@@ -37,22 +37,53 @@ const Login = () => {
         }
 
         try {
+            // D'abord récupérer le cookie CSRF
+            await axios.get('http://localhost:8000/sanctum/csrf-cookie', {
+                withCredentials: true
+            });
+
+            // Ensuite faire la requête de login
             const response = await axios.post('http://localhost:8000/api/login', {
                 email: formData.email,
                 password: formData.password
+            }, {
+                withCredentials: true
             });
+
+            // Stockage des informations utilisateur
             localStorage.setItem('auth_token', response.data.token);
-            // Redirection vers le dashboard
-            navigate('/dashboard');
-            
+            localStorage.setItem('user_role', response.data.user.role);
+            localStorage.setItem('user_name', response.data.user.name);
+
+            // Redirection selon le rôle
+            switch(response.data.user.role) {
+                case 'admin':
+                    navigate("/dashboardad");
+                    break;
+                case 'super_admin':
+                    navigate("/dashboardad");
+                    break;
+                case 'user':
+                    navigate("/dashboardad");
+                    break;
+                // case 'instructor':
+                //     navigate('/instructor/dashboard');
+                //     break;
+                default:
+                    navigate('/login');
+            }
+
         } catch (error) {
-            console.error('Erreur de connexion:', error.response?.data);
-            console.log(error);
-            // Gérer l'affichage des erreurs
+            console.error('Erreur de connexion:', error);
+            setError(
+                error.response?.data?.message || 
+                error.response?.data?.error || 
+                'Email ou mot de passe incorrect'
+            );
+        } finally {
             setIsLoading(false);
-            setError(error.message || 'une information est erronnee');
         }
-    };
+    }
 
     return (
     <div className="min-h-screen bg-[#1371B9] flex flex-col justify-between py-12 px-4 sm:px-6 lg:px-8">

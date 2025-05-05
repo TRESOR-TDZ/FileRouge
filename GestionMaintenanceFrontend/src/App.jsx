@@ -11,6 +11,8 @@ import Login from './pages/auth/Login';
 // import Footer from './components/layout/Footer';
 // import Layout from './components/layout/Layout';
 import DashboardSuperAdmin from './pages/dashboard/DashboardSuperAdmin';
+import DashboardUsersPage from './pages/dashboard/DashbordUsersPager';
+import Maintenances from './pages/dashboard/Maintenances';
 
 
 
@@ -26,7 +28,9 @@ const App = () => {
         <Route path="/sidebar" element={<Sidebar/>} />
         <Route path="/footer" element={<Footer/>} />
         <Route path="/layout" element={<Layout/>} /> */}
-        <Route path="/Dashboard" element={<DashboardSuperAdmin/>} />
+        <Route path="/Dashboardad" element={<DashboardSuperAdmin/>} />
+        <Route path="/DashboardUsersPage" element={<DashboardUsersPage/>} />
+        <Route path="/Maintenances" element={<Maintenances/>} />
       </Routes>
     </Router>
   );

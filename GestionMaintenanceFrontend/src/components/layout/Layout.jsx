@@ -21,7 +21,7 @@ const Layout = ({ isDarkMode, toggleTheme, children }) => {
         <Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
         
         {/* Contenu principal de la page (les enfants passés au composant Layout) */}
-        <main className={cn("flex-1 overflow-y-auto p-6", isDarkMode ? "bg-gray-950" : "bg-white")}>
+        <main className={cn("flex-1 overflow-y-auto p-6", isDarkMode ? "bg-gray-950" : "bg-[#fafafa]")}>
           {children}
         </main>
         
