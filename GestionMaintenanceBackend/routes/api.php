@@ -11,7 +11,9 @@ use App\Http\Controllers\UserController;
 
 //  API Routes
 
-// route authentification de base 
+// Route pour envoyer une invitation à un utilisateur
+Route::post('/invite', [InviteController::class, 'sendInvitation']);
+
 // Routes Publiques (sans authentification)
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -28,7 +30,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
     Route::middleware(['role:super admin, admin, utilisateur'])->group(function () {
-        Route::get('/admin/dashboard', [AuthController::class, 'logout']); // ici on inserreara les function des taches qui seeront execute uniquement par les admin ou et super admin par exemples par exple des gestion utilisatteurs.
+        Route::get('/admin/dashboard', [AuthController::class, 'logout']);
+         // ici on inserreara les function des taches qui seeront execute uniquement par les admin ou et super admin par exemples par exple des gestion utilisatteurs.
         Route::apiResource('users', UserController::class)->except(['create', 'edit']);
     });
 
